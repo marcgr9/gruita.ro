@@ -5,7 +5,7 @@ module.exports = {
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "./static/frontend"),
-    filename: "[name].js",
+    filename: "[name].bundle.js",
   },
   module: {
     rules: [
@@ -16,6 +16,8 @@ module.exports = {
           loader: "babel-loader",
         },
       },
+      { test: /\.css$/, use: ['style-loader', 'css-loader' ]},
+
     ],
   },
   optimization: {

@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom';
+import Title from './Title';
 
 class App extends React.Component {
     render() { 
-        return <div>Salutare</div>;
+        return <Title/>
     }
 }
  
 export default App;
 
-console.log('yes')
+console.log('yessssssss')
 render(<App/>, document.getElementById('app'))

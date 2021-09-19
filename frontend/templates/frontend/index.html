@@ -9,11 +9,9 @@
 
     <link rel="stylesheet" type="text/css" href="{% static "css/index.css" %}"></link>
 </head>
-<body>
-    <div id="main">
-        <div id="app"></div>
-    </div>
+<body id="app">
 
-    <script src="{% static "frontend/main.js" %}"></script>
-</body>
+    <script src="{% static "vendor/typed.js/typed.min.js" %}"></script>
+    <script src="{% static "frontend/main.bundle.js" %}"></script>
+    <script src="{% static "js/main.js" %}"></script></body>
 </html>
