@@ -1,7 +1,11 @@
-from .views import main
+from .views import ProjectView
 from django.urls import path
+from .api import ProjectViewSet
 
 
 urlpatterns = [
-    path('', main)
+    path('', ProjectViewSet.as_view({
+        'get': 'list',
+        'post': 'create'
+    }))
 ]
