@@ -1,5 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   entry: "./src/index.js",
@@ -16,8 +17,10 @@ module.exports = {
           loader: "babel-loader",
         },
       },
-      { test: /\.css$/, use: ['style-loader', 'css-loader' ]},
-
+      {
+        test: /\.css$/, 
+        use: [ 'style-loader', 'css-loader' ]
+      },
     ],
   },
   optimization: {
@@ -27,5 +30,6 @@ module.exports = {
     new webpack.DefinePlugin({
         'process.env.NODE_ENV' : JSON.stringify('development')
     }),
+    //new BundleAnalyzerPlugin()
   ],
 };
