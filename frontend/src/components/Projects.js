@@ -7,7 +7,7 @@ class ProjectList extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            projects: []
+            projects: [],
         };
     }
 
@@ -24,16 +24,31 @@ class ProjectList extends Component {
         fetch("/api/projects")
             .then(r => r.json())
             .then((r) => {
-                this.setState({ projects: r })
+                this.setState({ 
+                    projects: r,
+                })
             })
             .catch(e => console.log("mna"))
     }
 
+    componentWillReceiveProps() {
+        this.render() // don't know how to force render gracefully the projects that won't change after a refresh
+    }
+
+    shuffle(arr) {
+        let m = arr.length, i;
+        while (m) {
+            i = (Math.random() * m--) >>> 0;
+            [arr[m], arr[i]] = [arr[i], arr[m]]
+        }
+    }
+
     render() {
         const { projects } = this.state
+        this.shuffle(projects);
 
-        const to_render = projects.map(p => 
-            <Project key={p.id} project={p} blob={this.svgs[Math.floor((Math.random() * this.svgs.length))]}/>
+        const to_render = projects.slice(0, 2).map(p => 
+            <Project key={p.id * Math.random()} project={p} blob={this.svgs[Math.floor((Math.random() * this.svgs.length))]}/>
         )
 
         return ( 

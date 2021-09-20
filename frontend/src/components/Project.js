@@ -1,11 +1,17 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import Icon from '../utils/utils.js'
 import Badges from './Badges'
 import { Button, Col } from 'react-bootstrap';
 
 
 const Project = (props) => {
-    const { project, blob } = props
+    const { blob } = props
+
+    const [project, setProject] = useState(props.project);
+
+    useEffect(() => {
+        setProject(props.project);
+    }, [props.project]);
 
     const checkLink = (link, title) => {
         return link ? <a href={link}>{title}</a> : title
