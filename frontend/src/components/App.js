@@ -1,10 +1,20 @@
 import React, { Component } from 'react'
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 import { render } from 'react-dom';
-import Title from './Title';
+import Home from './Home';
 
-class App extends React.Component {
+class App extends Component {
     render() { 
-        return <Title/>
+        return (
+            <Router>
+                <Switch>
+                    <Route exact path='/'>
+                        <Home/>
+                    </Route>
+                    <Route path='/marc'><div className="hero"></div></Route>
+                </Switch>
+            </Router>
+        )
     }
 }
  
