@@ -1,5 +1,6 @@
+from django.db.models.fields import mixins
 from .models import Project
-from rest_framework import serializers, viewsets, permissions
+from rest_framework import serializers, viewsets, permissions, mixins
 from .serializers import ProjectSerializer
 
 class ProjectViewSet(viewsets.ModelViewSet):
