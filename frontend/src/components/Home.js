@@ -10,7 +10,7 @@ const Home = (props) => {
             <br/>
             <br/>
             <div id="projects">
-                <div class="section-title">
+                <div className="section-title">
                     <h2>Some bigger projects</h2>
                 </div>
                 <ProjectList/>

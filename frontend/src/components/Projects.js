@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Project from './Project';
-import 'bootstrap/dist/css/bootstrap.css';
+import { Row } from 'react-bootstrap'
 
 
 class ProjectList extends Component {
@@ -21,24 +21,25 @@ class ProjectList extends Component {
     ]
 
     componentDidMount() {
-        fetch("/api")
+        fetch("/api/projects")
             .then(r => r.json())
             .then((r) => {
                 this.setState({ projects: r })
             })
+            .catch(e => console.log("mna"))
     }
 
     render() {
         const { projects } = this.state
 
         const to_render = projects.map(p => 
-            <Project id={p.id} project={p} blob={this.svgs[Math.floor((Math.random() * this.svgs.length))]}/>
+            <Project key={p.id} project={p} blob={this.svgs[Math.floor((Math.random() * this.svgs.length))]}/>
         )
 
         return ( 
-            <div className="row justify-content-center">
+            <Row className="row justify-content-center">
                 {to_render}
-            </div>
+            </Row>
          );
     }
 }
