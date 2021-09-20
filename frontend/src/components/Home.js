@@ -1,54 +1,50 @@
-import React, { useState, useEffect } from 'react'
+import React, { Component } from 'react'
 import ProjectList from './Projects';
 import Title from './Title';
 import { Button } from 'react-bootstrap';
-import { refresh } from 'aos';
-
-function useRefresh() {
-    const [value, setValue] = useState(true)
-    return () => setValue(!value)
-}
 
 function simulateNetworkRequest() {
     return new Promise((resolve) => setTimeout(resolve, 500));
-  }
+}
 
-const Home = (props) => {
-    const refresh = useRefresh()
-    const [isLoading, setLoading] = useState(false);
+class Home extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { 
+            isLoading: false
+         }
+    }
 
-    // useEffect(() => {
-    //     if (isLoading) {
-    //         simulateNetworkRequest().then(() => {
-    //             setLoading(false);
-    //         });
-    //     }
-    // }, [isLoading]);
-
-    const handleClick = () => {
-        setLoading(true);   
+    handleClick = () => {
+        this.setState({
+            isLoading: true
+        });
         simulateNetworkRequest().then(() => {
-            setLoading(false);
+            this.setState({
+                isLoading: false
+            });
         });
     }
 
-    return (
-        <section id="hero" className="d-flex flex-column justify-content-center">
-            <Title/>
-            <br/>
-            <br/>
-            <div id="projects">
-                <div className="section-title">
-                    <h2 style={{display: "inline"}}>Some bigger projects</h2>
-                    <Button style={{marginLeft: 10, fontSize: "0.7rem"}} disabled={isLoading} onClick={!isLoading ? handleClick : null} variant="warning">More</Button>
-                </div>
-
-                <ProjectList/>
-            </div>  
-
-
-        </section>
-    )
+    render() { 
+        return (
+            <section id="hero" className="d-flex flex-column justify-content-center">
+                <Title/>
+                <br/>
+                <br/>
+                <div id="projects">
+                    <div className="section-title">
+                        <h2 style={{display: "inline"}}>Some bigger projects</h2>
+                        <Button style={{marginLeft: 10, fontSize: "0.7rem"}} disabled={this.state.isLoading} onClick={!this.state.isLoading ? this.handleClick : null} variant="warning">More</Button>
+                    </div>
+    
+                    <ProjectList loaded={this.state.isLoading}/>
+                </div>  
+    
+    
+            </section>
+        )
+    }
 }
-
+ 
 export default Home;

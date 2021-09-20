@@ -31,8 +31,10 @@ class ProjectList extends Component {
             .catch(e => console.log("mna"))
     }
 
-    componentWillReceiveProps() {
-        this.render() // don't know how to force render gracefully the projects that won't change after a refresh
+    shouldComponentUpdate(nextProps, nextState) {
+        // my genius at work to avoid a double render
+        // load when the projects are fetched and when the loading animation is playing in the button in <Home/>
+        return nextProps.loaded || (nextState.projects.length > 0 && this.state.projects.length == 0)
     }
 
     shuffle(arr) {
@@ -44,6 +46,7 @@ class ProjectList extends Component {
     }
 
     render() {
+        console.log('rerender')
         const { projects } = this.state
         this.shuffle(projects);
 
