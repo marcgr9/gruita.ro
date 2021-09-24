@@ -28,13 +28,13 @@ class Home extends Component {
 
     render() { 
         return (
-            <section id="hero" className="d-flex flex-column justify-content-center">
+             <section id="hero" className="d-flex flex-column justify-content-center">
                 <Title/>
                 <br/>
                 <br/>
                 <div id="projects">
                     <div className="section-title">
-                        <h2 style={{display: "inline"}}>Some bigger projects</h2>
+                        <h2 style={{display: "inline-block"}}>Projects I like</h2>
                         <Button style={{marginLeft: 10, fontSize: "0.7rem"}} disabled={this.state.isLoading} onClick={!this.state.isLoading ? this.handleClick : null} variant="warning">More</Button>
                     </div>
     

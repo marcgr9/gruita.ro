@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import Icon from '../utils/utils.js'
-import Badges from './Badges'
-import { Button, Col } from 'react-bootstrap';
+import Icon from '../../utils/utils.js';
+import Badges from '../../utils/Badges.js';
+import { Col } from 'react-bootstrap';
 
 
 const Project = (props) => {
@@ -18,7 +18,7 @@ const Project = (props) => {
     }
     
     return (
-        <Col md="3" className="services" data-aos="zoom-in" data-aos-delay="200">
+        <Col md={window.innerWidth > 800 ? 3 : ""} className="services" data-aos="zoom-in" data-aos-delay="200">
             <div className={"icon-box iconbox-" + project.color} style={{ "backgroundColor": "rgba(255, 255, 255, 0.5)", borderRadius: "45px" }}>
                 <div className="icon">
                     <svg className="icon-bg" width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
