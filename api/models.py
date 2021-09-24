@@ -15,7 +15,8 @@ class Project(models.Model):
 
 class Technology(models.Model):
     category = models.CharField(max_length=30, blank=False, unique=False)
-    technology = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=50, unique=True)
     description = models.CharField(max_length=120)
     project = models.CharField(max_length=50, blank=True, default="")
     link = models.CharField(max_length=150, blank=True)
+    languages = models.CharField(max_length=20, blank=True, default="")
