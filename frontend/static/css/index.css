@@ -75,6 +75,10 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
 }
 
+img.logo {
+  content:url("../img/favicon-32x32.png")
+}
+
 #hero button {
   position: relative;
   z-index: 1
@@ -321,21 +325,21 @@ section {
     fill: #47aeff;
   }
 
-.technologies .content h3 {
-  font-weight: 700;
+#technologies .title {
   font-size: 26px;
-  color: #728394;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #45505b;
 }
 
 .technologies .content ul {
   list-style: none;
-  padding: 0;
+  padding-left: 20px;
 }
 
 .technologies .content ul li {
   margin-bottom: 40px;
-  display: flex;
-  align-items: center;
 }
 
 .technologies .content ul strong {
@@ -349,8 +353,9 @@ section {
   line-height: 0;
 }
 
-.technologies .content p:last-child {
-  margin-bottom: 0;
+.technologies .content ul a svg {
+  font-size: 12px;
+  margin-left: 20px;
 }
 
 .resume .resume-title {
