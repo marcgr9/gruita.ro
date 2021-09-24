@@ -353,6 +353,10 @@ section {
   line-height: 0;
 }
 
+div.tech-category {
+  padding-bottom: 30px;
+}
+
 .technologies .content ul a svg {
   font-size: 12px;
   margin-left: 20px;

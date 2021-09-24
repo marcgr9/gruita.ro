@@ -2,7 +2,10 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 
 const Badges = props => {
-    const languages = props.languages.replace(/\s+/g, '').split(',')
+    let { languages } = props
+
+    if (typeof languages === "string")
+        languages = props.languages.replace(/\s+/g, '').split(',')
 
     const variants = {
         'py': 'success',
@@ -14,7 +17,7 @@ const Badges = props => {
         'bash': 'success',
     }
     
-    const to_render = languages.map(l => 
+    const to_render = languages.filter(l => l).map(l => 
         <Button style={{fontSize: "0.6em"}} disabled={true} variant={variants[l]}>{l}</Button>
     )
     console.log(to_render)
