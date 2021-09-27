@@ -56,7 +56,7 @@ class Technologies extends Component {
     render() {
         const { languages_set, categories } = this.groupTechnologies()
         const n = Object.keys(categories).length
-        const half = n / 2 | 0
+        const half = (n + 1) / 2 | 0
         
         let to_render = {}
         for (const k of Object.keys(categories)) to_render[k] = []
@@ -71,9 +71,13 @@ class Technologies extends Component {
         let col1 = <Col></Col>
         let col2
 
-        Object.keys(to_render).forEach(k => {
+        Object.keys(to_render).forEach((k, i) => {
+            console.log(k, i)
             techs = [...techs, 
-                <div className="tech-category">
+                <div className="tech-category" 
+                    data-aos={"fade-" + (i < half ? "right" : "left")} 
+                    data-aos-delay={100 * (i+1)}>
+                    
                     <h3 className="title">{k}</h3>
                     <ul>
                         {to_render[k]}
@@ -83,7 +87,7 @@ class Technologies extends Component {
             })
 
         techs.splice(half, 0, 
-            <div className="tech-category">
+            <div className="tech-category" data-aos="fade-left" data-aos-delay={150 * (half-1)}>
                 <h3 className="title">Languages</h3>
                 <Badges languages={Array.from(languages_set)}/>
             </div>

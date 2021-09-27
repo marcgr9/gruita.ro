@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import Technologies from './Technologies';
+import AOS from 'aos';
 
 class TechsHome extends Component {
     constructor(props) {
         super(props);
-        this.state = { 
-
-         }
+        AOS.init({
+            duration: 350,
+            once: true,
+            mirror: false
+          })
     }
 
     render() { 
@@ -15,7 +18,7 @@ class TechsHome extends Component {
                 <div className="section-title">
                     <h2>Technologies used</h2>
                 </div>
-
+                
                 <Technologies/>
             </section>
          );
