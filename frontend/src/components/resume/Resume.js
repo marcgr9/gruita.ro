@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 
+//TODO: model & put the whole resume in the db
 class Resume extends Component {
     constructor(props) {
         super(props);
@@ -126,11 +127,31 @@ const Awards = (props) => {
             <h4>{a.contest}</h4>
             <h5>{a.year}</h5>
             <p><b>{a.award}</b></p>
-            <p>{a.description}</p>
+            {
+                getListFromString(a.description)
+            }
         </div>    
     )
 
     return to_render ? to_render : null;
+}
+
+const getListFromString = (str) => {
+    if (str.includes("{") && str.includes("}")) {
+        const items = str.split("{").pop().split("}")[0]
+        return (
+            <div id="list-from-string">
+                <p>{str.split("{")[0]}</p>
+                <ul>
+                    {
+                    items.split(", ").map(li => 
+                        <li>{li}</li>
+                        )
+                    }
+                </ul>
+            </div>
+        )
+    } else return <p>{str}</p>
 }
 
 

@@ -9,22 +9,20 @@ import ResumeHome from './resume/ResumeHome';
 class App extends Component {
     render() { 
         return (
-            <div>
-                <Router>
-                    <Header/>
-                    <Switch>
-                        <Route exact path='/'>
-                            <Home/>
-                        </Route>
-                        <Route path='/marc'>
-                            <TechsHome/>
-                        </Route>
-                        <Route path='/resume'>
-                            <ResumeHome/>
-                        </Route>
-                    </Switch>
-                </Router>
-            </div>
+            <Router>
+                <Header/>
+                <Switch>
+                    <Route exact path='/'>
+                        <Home/>
+                    </Route>
+                    <Route path='/marc'>
+                        <TechsHome/>
+                    </Route>
+                    <Route path='/resume'>
+                        <ResumeHome/>
+                    </Route>
+                </Switch>
+            </Router>
         )
     }
 }
