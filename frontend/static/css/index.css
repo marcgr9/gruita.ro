@@ -167,6 +167,10 @@ section {
   overflow: hidden;
 }
 
+#technologies {
+  padding-top: 120px;
+}
+
 .section-title {
   text-align: center;
   padding-bottom: 30px;
@@ -464,4 +468,56 @@ div.tech-category {
   height: 10px;
   transition: .9s;
   background-color: #0563bb;
+}
+
+#header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 9997;
+  transition: all 0.5s;
+  padding: 15px;
+  overflow-y: auto;
+}
+
+@media (min-width: 992px) {
+  #main {
+    margin-left: 100px;
+  }
+}
+
+.nav-menu {
+  padding: 0;
+  display: block;
+}
+
+.nav-menu * {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: inline-block;
+}
+
+.nav-menu > ul > li {
+  position: relative;
+  white-space: nowrap;
+  margin-right: 15px;
+}
+
+.nav-menu a, .nav-menu a:focus {
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 15px;
+  background: rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.nav-menu a:hover, .nav-menu .active, .nav-menu .active:focus, .nav-menu li:hover > a {
+  color: #fff;
+  background: #0563bb;
+}
+
+.nav-menu a:hover span, .nav-menu .active span, .nav-menu .active:focus span, .nav-menu li:hover > a span {
+  color: #fff;
 }
