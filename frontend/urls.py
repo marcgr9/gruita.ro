@@ -4,5 +4,6 @@ from .views import index
 
 urlpatterns = [
     path('', index),
-    path('marc', index)
+    path('marc', index),
+    path('resume', index)
 ]

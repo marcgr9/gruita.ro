@@ -27,9 +27,9 @@ const Header = (props) => {
             
         // </nav>
         <nav>
-        <header id="header" class="d-flex flex-column justify-content-center">
+        <header id="header" className="d-flex flex-column justify-content-center">
 
-        <nav id="navbar" class="navbar nav-menu">
+        <nav id="navbar" className="navbar nav-menu">
             <ul>
                 <li>
                     <NavLink exact to="/" className="nav-link" activeClassName="active">
@@ -42,7 +42,12 @@ const Header = (props) => {
                     </NavLink>
                 </li>
                 <li>
-                    <img class="logo"/>
+                    <NavLink to="/resume" className="nav-link" activeClassName="active">
+                        Resume
+                    </NavLink>
+                </li>
+                <li>
+                    <img className="logo"/>
                 </li>
             </ul>
         </nav>

@@ -4,6 +4,7 @@ import { render } from 'react-dom';
 import Home from './home/Home';
 import Header from "./Header"
 import TechsHome from './technologies/TechsHome';
+import ResumeHome from './resume/ResumeHome';
 
 class App extends Component {
     render() { 
@@ -17,6 +18,9 @@ class App extends Component {
                         </Route>
                         <Route path='/marc'>
                             <TechsHome/>
+                        </Route>
+                        <Route path='/resume'>
+                            <ResumeHome/>
                         </Route>
                     </Switch>
                 </Router>
