@@ -20,3 +20,10 @@ class Technology(models.Model):
     project = models.CharField(max_length=50, blank=True, default="")
     link = models.CharField(max_length=150, blank=True)
     languages = models.CharField(max_length=20, blank=True, default="")
+
+
+class Award(models.Model):
+    contest = models.CharField(max_length=100)
+    year = models.PositiveIntegerField()
+    award = models.CharField(max_length=100)
+    description = models.CharField(max_length=300)
