@@ -329,6 +329,22 @@ section {
     fill: #47aeff;
   }
 
+  .services .iconbox-red .icon .icon-fg svg path {
+    fill: #d35c66;
+  }
+  
+  .services .iconbox-red .icon .icon-bg path {
+      fill: #fff;
+  }
+  
+  .services .iconbox-red:hover .icon .icon-fg svg path {
+      fill: #fff;
+  }
+  
+  .services .iconbox-red:hover .icon .icon-bg path {
+    fill: #d35c66;
+  }
+
 #technologies .title {
   font-size: 26px;
   font-weight: 700;
