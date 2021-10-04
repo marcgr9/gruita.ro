@@ -6,7 +6,7 @@ const Technology = (props) => {
     return (
         <li>
             <FaChevronRight/>
-            <strong>{tech.name + ": "}</strong>
+            <strong>{tech.name + ( tech.description ? ": " : "" )}</strong>
                 <span>{tech.description}</span>
             <br/>
             { tech.project ? 
