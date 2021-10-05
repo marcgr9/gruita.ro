@@ -18,7 +18,7 @@ const Badges = props => {
     }
     
     const to_render = languages.filter(l => l).map(l => 
-        <Button style={{fontSize: "0.7rem"}} disabled={true} variant={variants[l]}>{l}</Button>
+        <Button style={{fontSize: "0.7rem"}} disabled={true} variant={variants[l]} key={"badge-" + l}>{l}</Button>
     )
     return (
         <div style={{display: "inline"}}>

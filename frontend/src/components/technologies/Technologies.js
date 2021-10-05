@@ -72,9 +72,9 @@ class Technologies extends Component {
         
         let to_render = {}
         for (const k of Object.keys(categories)) to_render[k] = []
-
+        let i = 0;
         for (const [k, v] of Object.entries(categories)) {
-            let _ = v.map(t => <Technology tech={t}/>)
+            let _ = v.map(t => <Technology key={"tech-" + t.name} tech={t}/>)
             to_render[k] = [...to_render[k], ..._]
         }
 
@@ -85,7 +85,7 @@ class Technologies extends Component {
 
         Object.keys(to_render).forEach((k, i) => {
             techs = [...techs, 
-                <div className="tech-category" 
+                <div key={"cat-" + k} className="tech-category" 
                     data-aos={"fade-" + (i < half ? "right" : "left")} 
                     data-aos-delay={100 * (i+1)}>
                     
@@ -98,7 +98,7 @@ class Technologies extends Component {
             })
 
         techs.splice(half, 0, 
-            <div className="tech-category" data-aos="fade-left" data-aos-delay={150 * (half-1)}>
+            <div key={"cat-languages"} className="tech-category" data-aos="fade-left" data-aos-delay={150 * (half-1)}>
                 <h3 className="title">Languages</h3>
                 <Badges languages={Array.from(languages_set)}/>
             </div>

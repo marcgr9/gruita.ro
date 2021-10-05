@@ -63,7 +63,7 @@ class ProjectList extends Component {
         this.shuffle(projects);
 
         const to_render = projects.slice(0, 2).map(p => 
-            <Project key={p.id * Math.random()} project={p} blob={this.svgs[Math.floor((Math.random() * this.svgs.length))]}/>
+            <Project key={"project-" + project.title} project={p} blob={this.svgs[Math.floor((Math.random() * this.svgs.length))]}/>
         )
 
         return ( 

@@ -58,7 +58,7 @@ class Resume extends Component {
                             <h4>Marc-Bogdan Gruița</h4>
                             <ul>
                                 {this.state.about.map(a => 
-                                    <li>{a}</li>
+                                    <li key={"about-" + a}>{a}</li>
                                 )}
                             </ul>
                         </div>
@@ -66,7 +66,7 @@ class Resume extends Component {
                         <h3 className="resume-title">Education</h3>
                         {
                             this.state.education.map(e => 
-                                <div className="resume-item">
+                                <div key={"education-" + e.institution} className="resume-item">
                                     <h4>{e.institution}</h4>
                                     <h5>{e.when}</h5>
                                     <p><em>{e.studies}</em></p>
@@ -136,7 +136,7 @@ const Awards = (props) => {
     awards.sort((a, b) => b.year - a.year)
 
     let to_render = awards.map(a => 
-        <div className="resume-item">
+        <div key={"award-" + a.contest} className="resume-item">
             <h4>{a.contest}</h4>
             <h5>{a.year}</h5>
             <p><b>{a.award}</b></p>
@@ -158,7 +158,7 @@ const getListFromString = (str) => {
                 <ul>
                     {
                     items.split(", ").map(li => 
-                        <li>{li}</li>
+                        <li key={"item-" + li}>{li}</li>
                         )
                     }
                 </ul>
