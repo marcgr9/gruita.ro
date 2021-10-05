@@ -62,8 +62,10 @@ class ProjectList extends Component {
         const { projects } = this.state
         this.shuffle(projects);
 
+        // TODO: handle lifecycle better so Math.random() is not necessary
+        // it's role rn is to force update each <Project/> even if it's the same one, in order to have the aos animation
         const to_render = projects.slice(0, 2).map(p => 
-            <Project key={"project-" + p.title} project={p} blob={this.svgs[Math.floor((Math.random() * this.svgs.length))]}/>
+            <Project key={"project-" + p.title + Math.random()} project={p} blob={this.svgs[Math.floor((Math.random() * this.svgs.length))]}/>
         )
 
         return ( 
