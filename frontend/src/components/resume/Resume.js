@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import { APIContext } from '../../utils/context';
 
 //TODO: model & put the whole resume in the db
 class Resume extends Component {
-    constructor(props) {
+    static contextType = APIContext
+
+    constructor(props, context) {
         super(props);
         this.state = { 
             about: ["Born 24 nov. 2001", "marc@gruita.ro", "Cluj-Napoca, Cluj, RO"],
@@ -25,14 +28,24 @@ class Resume extends Component {
     }
 
     componentDidMount() {
-        fetch("/api/awards")
-            .then(r => r.json())
-            .then(r => {
-                this.setState({ 
-                    awards: r,
-                })
+        const { awards, updateAwards } = this.context
+
+        if (awards.length) {
+            this.setState({
+                awards
             })
-            .catch(e => console.log("mna dar din resume"))
+        } else {
+            fetch("/api/awards")
+                .then(r => r.json())
+                .then(r => {
+                    updateAwards(r)
+
+                    this.setState({ 
+                        awards: r,
+                    })
+                })
+                .catch(e => console.log("mna dar din resume")) 
+        }
     }
 
     render() { 
@@ -45,7 +58,7 @@ class Resume extends Component {
                             <h4>Marc-Bogdan Gruița</h4>
                             <ul>
                                 {this.state.about.map(a => 
-                                    <li>{a}</li>
+                                    <li key={"about-" + a}>{a}</li>
                                 )}
                             </ul>
                         </div>
@@ -53,7 +66,7 @@ class Resume extends Component {
                         <h3 className="resume-title">Education</h3>
                         {
                             this.state.education.map(e => 
-                                <div className="resume-item">
+                                <div key={"education-" + e.institution} className="resume-item">
                                     <h4>{e.institution}</h4>
                                     <h5>{e.when}</h5>
                                     <p><em>{e.studies}</em></p>
@@ -123,7 +136,7 @@ const Awards = (props) => {
     awards.sort((a, b) => b.year - a.year)
 
     let to_render = awards.map(a => 
-        <div className="resume-item">
+        <div key={"award-" + a.contest} className="resume-item">
             <h4>{a.contest}</h4>
             <h5>{a.year}</h5>
             <p><b>{a.award}</b></p>
@@ -145,7 +158,7 @@ const getListFromString = (str) => {
                 <ul>
                     {
                     items.split(", ").map(li => 
-                        <li>{li}</li>
+                        <li key={"item-" + li}>{li}</li>
                         )
                     }
                 </ul>
