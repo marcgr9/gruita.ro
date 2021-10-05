@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import { APIContext } from '../../utils/context';
 
 //TODO: model & put the whole resume in the db
 class Resume extends Component {
-    constructor(props) {
+    static contextType = APIContext
+
+    constructor(props, context) {
         super(props);
         this.state = { 
             about: ["Born 24 nov. 2001", "marc@gruita.ro", "Cluj-Napoca, Cluj, RO"],
@@ -25,14 +28,24 @@ class Resume extends Component {
     }
 
     componentDidMount() {
-        fetch("/api/awards")
-            .then(r => r.json())
-            .then(r => {
-                this.setState({ 
-                    awards: r,
-                })
+        const { awards, updateAwards } = this.context
+
+        if (awards.length) {
+            this.setState({
+                awards
             })
-            .catch(e => console.log("mna dar din resume"))
+        } else {
+            fetch("/api/awards")
+                .then(r => r.json())
+                .then(r => {
+                    updateAwards(r)
+
+                    this.setState({ 
+                        awards: r,
+                    })
+                })
+                .catch(e => console.log("mna dar din resume")) 
+        }
     }
 
     render() { 

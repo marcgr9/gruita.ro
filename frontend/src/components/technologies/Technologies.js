@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap'
 import Badges from '../../utils/Badges';
+import { APIContext } from '../../utils/context';
 import Technology from './Technology'
 
 
 class Technologies extends Component {
-    constructor(props) {
+    static contextType = APIContext
+
+    constructor(props, context) {
         super(props)
         this.state = {
             technologies: []
@@ -13,19 +16,28 @@ class Technologies extends Component {
     }
 
     componentDidMount() {
-        fetch("/api/technologies")
-            .then(r => r.json())
-            .then((r) => {
-                console.log(r)
-                this.setState({ 
-                    technologies: r,
-                })
+        const { technologies, updateTechnologies } = this.context
+
+        if (technologies.length > 0) {
+            this.setState({
+                technologies
             })
-            .catch(e => console.log("mna din techs"))
+        } else {
+            fetch("/api/technologies")
+                .then(r => r.json())
+                .then((r) => {
+                    updateTechnologies(r)
+
+                    this.setState({ 
+                        technologies: r,
+                    })
+                })
+                .catch(e => console.log("mna din techs", e))
+        }
+        
     }
 
     groupTechnologies() {
-        console.log('grouped')
         const { technologies } = this.state
         let categories = {}
         let languages_set = new Set()
@@ -72,7 +84,6 @@ class Technologies extends Component {
         let col2
 
         Object.keys(to_render).forEach((k, i) => {
-            console.log(k, i)
             techs = [...techs, 
                 <div className="tech-category" 
                     data-aos={"fade-" + (i < half ? "right" : "left")} 

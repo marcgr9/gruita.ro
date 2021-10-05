@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import Project from './Project';
 import { Row } from 'react-bootstrap'
+import { APIContext, TContext } from '../../utils/context';
 
 
 class ProjectList extends Component {
-    constructor(props) {
+    static contextType = APIContext;
+
+    constructor(props, context) {
         super(props);
         this.state = { 
             projects: [],
@@ -21,14 +24,24 @@ class ProjectList extends Component {
     ]
 
     componentDidMount() {
-        fetch("/api/projects")
-            .then(r => r.json())
-            .then((r) => {
-                this.setState({ 
-                    projects: r,
-                })
+        const { projects, updateProjects } = this.context;
+
+        if (projects.length > 0) {
+            this.setState({
+                projects
             })
-            .catch(e => console.log("mna"))
+        } else {
+            fetch("/api/projects")
+                .then(r => r.json())
+                .then((r) => {
+                    updateProjects(r)
+
+                    this.setState({ 
+                        projects: r,
+                    })
+                })
+                .catch(e => console.log(e))
+        }
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -46,7 +59,6 @@ class ProjectList extends Component {
     }
 
     render() {
-        console.log('rerender')
         const { projects } = this.state
         this.shuffle(projects);
 
