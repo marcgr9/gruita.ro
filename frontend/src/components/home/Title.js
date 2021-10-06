@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import 'bootstrap/dist/css/bootstrap.css';
-
+import TypedWrapper from '../../utils/TypedWrapper';
 
 import { FaGithub, FaStackOverflow, FaUniversity} from 'react-icons/fa';
 
@@ -17,14 +17,14 @@ class Title extends React.Component {
           })
     }
     render() { 
-        const items = "Developer, Student, 200kg deadlift"
+        const items = ["Developer", "Student", "200kg deadlift"]
         const inline = { display: "inline" };
 
         return (
             <div className="container" data-aos="zoom-in" data-aos-delay="100">
               <h1 style={inline}>Marc Gruița </h1>
               <a href="mailto:marc@gruita.ro"><h3 style={inline}>marc@gruita.ro</h3></a>
-              <p><span className="typed" data-typed-items={items}></span></p>
+              <TypedWrapper strings={items}/>
               <div className="social-links">
                 <a href="https://www.github.com/marcgr9" title="Github" className="github"><FaGithub/></a>
                 <a href="https://stackoverflow.com/users/10314752/marc-gruita" title="Stackoverflow" className="stack-overflow"><FaStackOverflow/></a>
