@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { APIContext } from '../../utils/context';
 import TypedWrapper from '../../utils/TypedWrapper';
 import "./Resume.css";
+import { FaAngleDoubleDown } from 'react-icons/fa';
 
 //TODO: model & put the whole resume in the db
 class Resume extends Component {
@@ -50,6 +51,13 @@ class Resume extends Component {
         }
     }
 
+    hide(e) {
+        console.log(e.target)
+        let element = e.target;
+        while (!element.classList.contains("resume-section")) element = element.parentNode
+        element.classList.toggle('hidden')
+    }
+
     render() { 
         return ( 
             <Container className="resume-data light-theme" data-aos="fade-down" data-aos-delay="200">
@@ -57,6 +65,7 @@ class Resume extends Component {
                     <Col lg="6">
                         <div className="resume-section">
                             <div className="resume-title">
+                                <span className="toggle" onClick={this.hide}><FaAngleDoubleDown/></span>
                                 <h1># Summary</h1>
                             </div>
                             <div className="resume-item">
@@ -73,6 +82,7 @@ class Resume extends Component {
                         
                         <div className="resume-section">
                             <div className="resume-title">
+                                <span className="toggle" onClick={this.hide}><FaAngleDoubleDown/></span>
                                 <h1># Education</h1>
                             </div>
                             {
@@ -90,15 +100,17 @@ class Resume extends Component {
 
                         <div className="resume-section">
                             <div className="resume-title">
+                                <span className="toggle" onClick={this.hide}><FaAngleDoubleDown/></span>
                                 <h1># Awards & Contests</h1>
                             </div>
                             <Awards awards={this.state.awards}/>
-                            <p className="padding"/>
+                            {/* <p className="padding"/> */}
                         </div>
                     </Col>
                     <Col lg="6">
                         <div className="resume-section">
                         <div className="resume-title">
+                            <span className="toggle" onClick={this.hide}><FaAngleDoubleDown/></span>
                             <h1># Professional Experience</h1>
                         </div>
                         <div className="resume-item">

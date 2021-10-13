@@ -101,8 +101,21 @@
   height: 1.5rem;
 }
 
-.resume-data .resume-section {
+.resume-data .resume-section .resume-item {
   position: relative;
+  transition: max-height 0.5s ease-out;
+  max-height: 1000px;
+  height: auto;
+  overflow: hidden;
+}
+
+.resume-data .resume-section.hidden>.resume-item {
+  max-height: 0;
+}
+
+.resume-data .resume-section.hidden .toggle path {
+  transition: 0.2s;
+  transform: translate(-10%, 75%) rotate(-90deg) ;
 }
   
 .resume-data .resume-title {
@@ -110,10 +123,30 @@
   position: relative;
 }
 
+.resume-data .resume-title > * {
+  display: inline-block;
+}
+
+.resume-data .resume-title .toggle {
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  cursor: pointer;
+  color: red;
+}
+
 .resume-data .resume-item {
   padding-left: var(--bg-width);
   position: relative;
 }
+
+
+/* .resume-data .resume-section.hidden>.resume-item>* {
+  i'm a genius, this keeps the ::before counter!!!!!
+  position: absolute;
+  z-index: -1;
+  max-height: 0;
+} */ 
 
 .resume-data .resume-item > p,
 .resume-data .resume-item > h4,
@@ -162,7 +195,7 @@
   padding-left: auto;
   vertical-align: inherit;
 
-
+  visibility: visible;
   position: absolute;
   left: 0;
 }
