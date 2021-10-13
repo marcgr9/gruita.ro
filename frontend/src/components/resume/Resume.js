@@ -28,6 +28,19 @@ class Resume extends Component {
             awards: [],
             experience: []
          }
+
+        this.syntax = {
+            "c": {
+                comment: "// ",
+                startBracket: " {",
+                closeBracket: "}"
+            },
+            "py": {
+                comment: "# ",
+                startBracket: ":",
+                closeBracket: "\b"
+            }
+        }
     }
 
     componentDidMount() {
@@ -59,6 +72,7 @@ class Resume extends Component {
     }
 
     render() { 
+        let { language } = this.props
         return ( 
             <Container className="resume-data light-theme" data-aos="fade-down" data-aos-delay="200">
                 <Row>
@@ -66,16 +80,16 @@ class Resume extends Component {
                         <div className="resume-section">
                             <div className="resume-title">
                                 <span className="toggle" onClick={this.hide}><FaAngleDoubleDown/></span>
-                                <h1># Summary</h1>
+                                <h1>{this.syntax[language].comment + "Summary"}</h1>
                             </div>
                             <div className="resume-item">
-                                <h2>{"Marc-Bogdan Gruița {"}</h2>
+                                <h2>{"Marc-Bogdan Gruița" + this.syntax[language].startBracket}</h2>
                                 <ul>
                                     {this.state.about.map(a => 
                                         <li key={"about-" + a}>{a}</li>
                                     )}
                                 </ul>
-                                <h2>{"}"}</h2>
+                                <h2>{this.syntax[language].closeBracket}</h2>
                             </div>
                             {/* <p className="padding"/> */}
                         </div>
@@ -83,15 +97,15 @@ class Resume extends Component {
                         <div className="resume-section">
                             <div className="resume-title">
                                 <span className="toggle" onClick={this.hide}><FaAngleDoubleDown/></span>
-                                <h1># Education</h1>
+                                <h1>{this.syntax[language].comment + "Education"}</h1>
                             </div>
                             {
                                 this.state.education.map(e => 
                                     <div key={"education-" + e.institution} className="resume-item">
-                                        <h2>{e.institution + "  {"}</h2>
+                                        <h2>{e.institution + this.syntax[language].startBracket}</h2>
                                         <h4>{e.when}</h4>
                                         <p><em>{e.studies}</em></p>
-                                        <h2>{"}"}</h2>
+                                        <h2>{this.syntax[language].closeBracket}</h2>
                                     </div>
                                 )
                             }
@@ -101,9 +115,9 @@ class Resume extends Component {
                         <div className="resume-section">
                             <div className="resume-title">
                                 <span className="toggle" onClick={this.hide}><FaAngleDoubleDown/></span>
-                                <h1># Awards & Contests</h1>
+                                <h1>{this.syntax[language].comment + "Awards & Contests"}</h1>
                             </div>
-                            <Awards awards={this.state.awards}/>
+                            <Awards awards={this.state.awards} wrap={this.syntax[language]}/>
                             {/* <p className="padding"/> */}
                         </div>
                     </Col>
@@ -111,10 +125,10 @@ class Resume extends Component {
                         <div className="resume-section">
                         <div className="resume-title">
                             <span className="toggle" onClick={this.hide}><FaAngleDoubleDown/></span>
-                            <h1># Professional Experience</h1>
+                            <h1>{this.syntax[language].comment + "Professional Experience"}</h1>
                         </div>
                         <div className="resume-item">
-                            <h2>{"Developer intern {"}</h2>
+                            <h2>{"Developer intern" + this.syntax[language].startBracket}</h2>
                             <h4>august 2019 - march 2020</h4>
                             <p><em>Hypermedia, Cluj-Napoca, Cluj</em></p>
                             <ul>
@@ -122,10 +136,10 @@ class Resume extends Component {
                             <li>I did Android development with Kotlin, learning about good coding practices and most importantly about deign patterns.</li>
                             <li>Here I've used extensively the following patterns: MVVM, Observer and MVC.</li>
                             </ul>
-                            <h2>{"}"}</h2>
+                            <h2>{this.syntax[language].closeBracket}</h2>
                         </div>
                         <div className="resume-item">
-                            <h2>{"Full stack developer, DPIT Foundation {"}</h2>
+                            <h2>{"Full stack developer, DPIT Foundation" + this.syntax[language].startBracket}</h2>
 
                             <div className="dpit-info">
                             <p>The DPIT Foundation, translated as Discover your passion in IT, has organised a way for highschool students to see how work is being done in an IT company.</p>
@@ -155,10 +169,10 @@ class Resume extends Component {
                             <li>Role: team leader, in-app store map & web app where you can create your store layout</li>
                             <li>Award: 3Pillar Global special award</li>
                             </ul>
-                            <h2>{"}"}</h2>
+                            <h2>{this.syntax[language].closeBracket}</h2>
                         </div>
                         <div className="resume-item">
-                            <h2>{"Java developer {"}</h2>
+                            <h2>{"Java developer" + this.syntax[language].startBracket}</h2>
                             <h4>2014 - 2015</h4>
                             <p><em>My own Minecraft server</em></p>
                             <p>I owned a pretty successful Minecraft server where I implemented my own custom features in Java.</p>
@@ -166,7 +180,7 @@ class Resume extends Component {
                                 <p style={{display: 'table-cell'}}>This was my first experi</p>
                                 <TypedWrapper style={{display: 'table-cell'}} strings={["ence with programming. :)"]}/>
                             </div>
-                            <h2>{"}"}</h2>
+                            <h2>{this.syntax[language].closeBracket}</h2>
                         </div>
                         </div>
                     </Col>
@@ -182,13 +196,13 @@ const Awards = (props) => {
 
     let to_render = awards.map(a => 
         <div key={"award-" + a.contest} className="resume-item">
-            <h2>{a.contest + "  {"}</h2>
+            <h2>{a.contest + props.wrap.startBracket}</h2>
             <h4>{a.year}</h4>
             <p><b>{a.award}</b></p>
             {
                 getListFromString(a.description)
             }
-            <h2>{"}"}</h2>
+            <h2>{props.wrap.closeBracket}</h2>
         </div>    
     )
 

@@ -11,25 +11,43 @@ class ResumeHome extends Component {
             once: true,
             mirror: false
           })
+        
+        this.languages = ["c", "py"]
+        
+        this.state = {
+            languageId: 0
+        }
     }
 
     changeTheme() {
         document.getElementsByClassName("resume-data")[0].classList.toggle('dark-theme')
         document.getElementsByClassName("resume-data")[0].classList.toggle('light-theme')
         document.getElementsByClassName("btn")[0].classList.toggle('btn-secondary')
-        document.getElementsByClassName("btn")[0].classList.toggle('btn-warning')
-        
+        document.getElementsByClassName("btn")[0].classList.toggle('btn-light')
+    }
+
+    changeLanguage() {
+        let { languageId } = this.state
+        const n = this.languages.length
+        this.setState({
+            languageId: (languageId + 1) % n
+        })
+        document.getElementsByClassName("btn")[1].classList.toggle('btn-warning') 
+        document.getElementsByClassName("btn")[1].classList.toggle('btn-success') 
     }
 
     render() { 
+        let { languageId } = this.state
+
         return ( 
             <section id="resume" className="resume">
                 <div className="section-title">
                     <h2 style={{display: 'inline-block'}}>Resume</h2>
-                    <Button style={{marginLeft: 10, fontSize: "0.7rem"}} onClick={this.changeTheme} variant="secondary">Change theme</Button>
+                    <Button style={{marginLeft: 10, fontSize: "0.7rem"}} onClick={this.changeTheme} variant="secondary">Theme</Button>
+                    <Button style={{position: 'absolute', right: "10%", fontSize: "0.7rem"}} onClick={() => this.changeLanguage()} variant="warning">{this.languages[languageId]}</Button>
                 </div>
                 
-                <Resume/>
+                <Resume language={this.languages[languageId]}/>
             </section>
          );
     }
