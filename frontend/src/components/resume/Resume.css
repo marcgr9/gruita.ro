@@ -113,6 +113,10 @@
   max-height: 0;
 }
 
+.resume-data .resume-section .toggle path {
+  transition: 0.2s;
+}
+
 .resume-data .resume-section.hidden .toggle path {
   transition: 0.2s;
   transform: translate(-10%, 75%) rotate(-90deg) ;
