@@ -423,6 +423,13 @@ div.tech-category {
   transition: all 0.5s;
   padding: 15px;
   overflow-y: auto;
+
+}
+
+#header:hover {
+  transition: 0.2s;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 0 0 0 30px;
 }
 
 @media (min-width: 992px) {
