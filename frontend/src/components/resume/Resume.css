@@ -1,0 +1,168 @@
+.resume-data {
+  counter-reset: line;
+  --bg-width: 48px;
+}
+
+.resume-data.light-theme{
+  --hover: #EEE8D5;
+  --bg: #FDF6E3;
+  --line: #237893;
+  --comment: #9ea9a7;
+  --primary: #2AA198;
+  --secondary: #449AD4;
+  --line-bg: url('bg-light.png'); 
+  transition: all 0.5s;
+
+}
+
+.resume-data.dark-theme {
+  --hover: #264F78;
+  --bg: #1E1E1E;
+  --line: #858585;
+  --comment: #6A9955;
+  --primary: #D4D4D4;
+  --secondary: #CE9178;
+  --line-bg: url('bg-dark.png'); 
+  transition: all 0.5s;
+}
+
+.resume-data .col-lg-6 {
+  background: var(--line-bg) repeat-y top left;
+  background-color: var(--bg);
+}
+
+.resume-data .col-lg-6 * {
+  font-family: "Ubuntu Mono";
+}
+
+.resume-data p {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+}
+
+.resume-data h1 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--comment);
+
+    text-transform: lowercase;
+}
+
+.resume-data h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--secondary);
+
+    text-transform: uppercase;
+    font-family: "Poppins", sans-serif;
+
+    margin-top: 0.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.resume-data h3 {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--secondary);
+
+  text-transform: uppercase;
+  font-family: "Poppins", sans-serif;
+}
+
+.resume-data h4 {
+    font-size: 0.9rem;
+    font-weight: 400;
+    background: var(--hover);
+    color: var(--primary);
+
+    display: inline-block;
+
+    padding: 5px 15px;
+}
+
+.resume-data h5 {
+  font-size: 0.75rem;
+  color: var(--primary);
+  display: inline-block;
+}
+
+.resume-data ul {
+  padding-left: calc(--bg-width / 2);
+  margin-bottom: 0;
+}
+
+.resume-data ul li {
+  padding-bottom: 0.25rem;
+  color: var(--primary);
+} 
+
+.resume-data .padding {
+  height: 1.5rem;
+}
+
+.resume-data .resume-section {
+  position: relative;
+}
+  
+.resume-data .resume-title {
+  padding-left: calc(var(--bg-width));
+  position: relative;
+}
+
+.resume-data .resume-item {
+  padding-left: var(--bg-width);
+  position: relative;
+}
+
+.resume-data .resume-item > p,
+.resume-data .resume-item > h4,
+.resume-data .resume-item > ul,
+.resume-data .resume-item > .dpit-info,
+.resume-data .resume-item > .dpit-company,
+.resume-data .resume-item > .list-from-string,
+.resume-data .resume-item .last-line-typed
+{
+  margin-left: 2rem;
+}
+
+.resume-data .resume-section > :last-child {
+  margin-bottom: 0.5rem;
+}
+
+.resume-data .dpit-company > * {
+  display: inline-block;
+}
+
+.resume-data .resume-title::before,
+.resume-data .resume-item>p::before,
+.resume-data .resume-item>h2::before,
+.resume-data .resume-item>h4::before,
+.resume-data .resume-item>ul>li::before,
+.resume-data .resume-item .list-from-string li::before,
+.resume-data .resume-item .list-from-string p::before,
+.resume-data .resume-item .dpit-info p::before,
+.resume-data .resume-item .dpit-company::before,
+.resume-data .resume-item .last-line-typed::before,
+.resume-data .padding::before
+{
+  counter-increment: line;
+  content: counters(line, ".", decimal-leading-zero);
+  font-size: 16px;
+  height: 1rem;
+  font-weight: 20;
+  width: 48px;
+
+  color: var(--line);
+
+  margin-left: 0;
+  margin-right: 48px;
+
+  padding-right: 0;
+  padding-left: auto;
+  vertical-align: inherit;
+
+
+  position: absolute;
+  left: 0;
+}

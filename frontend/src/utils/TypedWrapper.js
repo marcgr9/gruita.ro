@@ -20,9 +20,10 @@ class TypedWrapper extends React.Component {
     }
 
     render() {
+        const { style } = this.props;
         return (
 
-        <div className="type-wrap">
+        <div style={style} className="type-wrap">
             <p>
                 <span ref={(el) => {this.el = el;}}/>
             </p>
